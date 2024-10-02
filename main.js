@@ -66,7 +66,11 @@ async function processWhirlpool(data) {
   let approved = null;
 
   for (const field of fields) {
-    if (field.checklist_form_field.checklist_form_id !== WHIRLPOOL_FORM_ID) {
+    if (field.checklist_form_field.checklist_form_id != WHIRLPOOL_FORM_ID) {
+      console.log(
+        "checklist_form_id " + field.checklist_form_field.checklist_form_id
+      );
+
       return;
     }
 
@@ -264,6 +268,10 @@ async function processAnuntech(data) {
 
   for (const field of fields) {
     if (field.checklist_form_field.checklist_form_id !== ANUNTECH_FORM_ID) {
+      console.log(
+        "checklist_form_id " + field.checklist_form_field.checklist_form_id
+      );
+
       return;
     }
 
