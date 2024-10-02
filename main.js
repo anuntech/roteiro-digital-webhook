@@ -21,7 +21,9 @@ const knex = require("knex")({
   connection: process.env.DATABASE_URL,
 });
 
-function processWhirlpool(fields) {
+function processWhirlpool(data) {
+  const { id, entity_id, entity, updated_at: updatedAt, fields } = data;
+
   let created_at = entity?.scheduled_for;
   let appliance_id = null;
   let sku_code = null;
@@ -235,7 +237,9 @@ function processWhirlpool(fields) {
     .merge();
 }
 
-function processAnuntech(fields) {
+function processAnuntech(data) {
+  const { id, entity_id, entity, updated_at: updatedAt, fields } = data;
+
   let order_id = entity?.code;
   let technical = entity?.driver_id;
   let order_classification = null;
@@ -319,10 +323,10 @@ function processAnuntech(fields) {
 }
 app.post("/data", (req, res) => {
   const body = req.body;
-  const { fields } = body.payload;
+  const data = body.payload;
 
-  processWhirlpool(fields);
-  processAnuntech(fields);
+  processWhirlpool(data);
+  processAnuntech(data);
 
   res.status(200).json({
     message: "Data Saved successfully!",
