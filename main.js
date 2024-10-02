@@ -67,10 +67,11 @@ async function processWhirlpool(data) {
 
   for (const field of fields) {
     if (field.checklist_form_field.checklist_form_id !== WHIRLPOOL_FORM_ID) {
-      continue;
+      return;
     }
 
-    console.log(fields);
+    console.log("rodou field of processWhirlpool");
+
     if (field.checklist_form_field?.name == "appliance.applianceId") {
       appliance_id = field.value;
     }
@@ -263,8 +264,10 @@ async function processAnuntech(data) {
 
   for (const field of fields) {
     if (field.checklist_form_field.checklist_form_id !== ANUNTECH_FORM_ID) {
-      continue;
+      return;
     }
+
+    console.log("rodou field of processAnuntech");
 
     if (field.checklist_form_field_id == 5834) {
       order_classification = field.value;
