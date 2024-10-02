@@ -64,124 +64,124 @@ function processWhirlpool(data) {
   let service_warranty = null;
   let parts_warranty = null;
   let approved = null;
-  console.log(fields);
 
-  for (const field in fields) {
-    if (field.checklist_form_field.name == "appliance.applianceId") {
+  for (const field of fields) {
+    console.log(fields);
+    if (field.checklist_form_field?.name == "appliance.applianceId") {
       appliance_id = field.value;
     }
-    if (field.checklist_form_field.name == "appliance.skuCode") {
+    if (field.checklist_form_field?.name == "appliance.skuCode") {
       sku_code = field.value;
     }
-    if (field.checklist_form_field.name == "appliance.purchaseDate") {
+    if (field.checklist_form_field?.name == "appliance.purchaseDate") {
       purchase_date = field.value;
     }
-    if (field.checklist_form_field.name == "appliance.invoiceNumber") {
+    if (field.checklist_form_field?.name == "appliance.invoiceNumber") {
       invoice_number = field.value;
     }
-    if (field.checklist_form_field.name == "appliance.invoicePhoto") {
+    if (field.checklist_form_field?.name == "appliance.invoicePhoto") {
       invoice_photo = field.value;
     }
-    if (field.checklist_form_field.name == "appliance.engineeringVersion") {
+    if (field.checklist_form_field?.name == "appliance.engineeringVersion") {
       engineering_version = field.value;
     }
-    if (field.checklist_form_field.name == "appliance.applianceSerialNumber") {
+    if (field.checklist_form_field?.name == "appliance.applianceSerialNumber") {
       appliance_serial_number = field.value;
     }
-    if (field.checklist_form_field.name == "appliance.labelPhoto") {
+    if (field.checklist_form_field?.name == "appliance.labelPhoto") {
       label_photo = field.value;
     }
-    if (field.checklist_form_field.name == "consumer.consumerId") {
+    if (field.checklist_form_field?.name == "consumer.consumerId") {
       consumer_id = field.value;
     }
-    if (field.checklist_form_field.name == "consumer.cellPhoneNumber") {
+    if (field.checklist_form_field?.name == "consumer.cellPhoneNumber") {
       cell_phone_number = field.value;
     }
-    if (field.checklist_form_field.name == "consumer.email") {
+    if (field.checklist_form_field?.name == "consumer.email") {
       email = field.value;
     }
-    if (field.checklist_form_field.name == "consumer.responsibleType") {
+    if (field.checklist_form_field?.name == "consumer.responsibleType") {
       responsible_type = field.value;
     }
-    if (field.checklist_form_field.name == "consumer.responsibleName") {
+    if (field.checklist_form_field?.name == "consumer.responsibleName") {
       responsible_name = field.value;
     }
-    if (field.checklist_form_field.name == "consumer.responsibleDocNumber") {
+    if (field.checklist_form_field?.name == "consumer.responsibleDocNumber") {
       responsible_doc_number = field.value;
     }
-    if (field.checklist_form_field.name == "order.orderId") {
+    if (field.checklist_form_field?.name == "order.orderId") {
       order_id = field.value;
     }
-    if (field.checklist_form_field.name == "order.confirmedDefect") {
+    if (field.checklist_form_field?.name == "order.confirmedDefect") {
       confirmed_defect = field.value;
     }
-    if (field.checklist_form_field.name == "order.confirmedDefect2") {
+    if (field.checklist_form_field?.name == "order.confirmedDefect2") {
       confirmed_defect2 = field.value;
     }
-    if (field.checklist_form_field.name == "order.failurePhoto1") {
+    if (field.checklist_form_field?.name == "order.failurePhoto1") {
       failure_photo1 = field.value;
     }
-    if (field.checklist_form_field.name == "order.failurePhoto2") {
+    if (field.checklist_form_field?.name == "order.failurePhoto2") {
       failure_photo2 = field.value;
     }
-    if (field.checklist_form_field.name == "order.failurePhoto3") {
+    if (field.checklist_form_field?.name == "order.failurePhoto3") {
       failure_photo3 = field.value;
     }
-    if (field.checklist_form_field.name == "order.failurePhoto4") {
+    if (field.checklist_form_field?.name == "order.failurePhoto4") {
       failure_photo4 = field.value;
     }
-    if (field.checklist_form_field.name == "order.failurePhoto5") {
+    if (field.checklist_form_field?.name == "order.failurePhoto5") {
       failure_photo5 = field.value;
     }
-    if (field.checklist_form_field.name == "order.technicalReport") {
+    if (field.checklist_form_field?.name == "order.technicalReport") {
       technical_report = field.value;
     }
-    if (field.checklist_form_field.name == "order.signature") {
+    if (field.checklist_form_field?.name == "order.signature") {
       signature = field.value;
     }
-    if (field.checklist_form_field.name == "order.finalStatusId") {
+    if (field.checklist_form_field?.name == "order.finalStatusId") {
       final_status_id = field.value;
     }
-    if (field.checklist_form_field.name == "order.finalReasonId") {
+    if (field.checklist_form_field?.name == "order.finalReasonId") {
       final_reason_id = field.value;
     }
-    if (field.checklist_form_field.name == "order.reschedulingDate") {
+    if (field.checklist_form_field?.name == "order.reschedulingDate") {
       rescheduling_date = new Date(field.value);
     }
-    if (field.checklist_form_field.name == "order.reschedulingPeriod") {
+    if (field.checklist_form_field?.name == "order.reschedulingPeriod") {
       rescheduling_period = field.value;
     }
-    if (field.checklist_form_field.name == "proposal.partsPrice") {
+    if (field.checklist_form_field?.name == "proposal.partsPrice") {
       parts_price = parseFloat(field.value);
     }
-    if (field.checklist_form_field.name == "proposal.laborPrice") {
+    if (field.checklist_form_field?.name == "proposal.laborPrice") {
       labor_price = parseFloat(field.value);
     }
-    if (field.checklist_form_field.name == "proposal.visitPrice") {
+    if (field.checklist_form_field?.name == "proposal.visitPrice") {
       visit_price = parseFloat(field.value);
     }
-    if (field.checklist_form_field.name == "proposal.displacementPrice") {
+    if (field.checklist_form_field?.name == "proposal.displacementPrice") {
       displacement_price = parseFloat(field.value);
     }
-    if (field.checklist_form_field.name == "proposal.totalPrice") {
+    if (field.checklist_form_field?.name == "proposal.totalPrice") {
       total_price = parseFloat(field.value);
     }
-    if (field.checklist_form_field.name == "proposal.receivedPrice") {
+    if (field.checklist_form_field?.name == "proposal.receivedPrice") {
       received_price = parseFloat(field.value);
     }
-    if (field.checklist_form_field.name == "proposal.paymentMethod") {
+    if (field.checklist_form_field?.name == "proposal.paymentMethod") {
       payment_method = field.value;
     }
-    if (field.checklist_form_field.name == "proposal.notes") {
+    if (field.checklist_form_field?.name == "proposal.notes") {
       notes = field.value;
     }
-    if (field.checklist_form_field.name == "proposal.serviceWarranty") {
+    if (field.checklist_form_field?.name == "proposal.serviceWarranty") {
       service_warranty = field.value;
     }
-    if (field.checklist_form_field.name == "proposal.partsWarranty") {
+    if (field.checklist_form_field?.name == "proposal.partsWarranty") {
       parts_warranty = field.value;
     }
-    if (field.checklist_form_field.name == "proposal.approved") {
+    if (field.checklist_form_field?.name == "proposal.approved") {
       approved = field.value;
     }
   }
