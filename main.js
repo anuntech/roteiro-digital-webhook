@@ -66,7 +66,7 @@ async function processWhirlpool(data) {
   let approved = null;
 
   for (const field of fields) {
-    if (field.checklist_form_field.checklist_form_id === WHIRLPOOL_FORM_ID) {
+    if (field.checklist_form_field.checklist_form_id !== WHIRLPOOL_FORM_ID) {
       continue;
     }
 
@@ -262,7 +262,7 @@ async function processAnuntech(data) {
   let created_at = entity?.scheduled_for;
 
   for (const field of fields) {
-    if (field.checklist_form_field.checklist_form_id === ANUNTECH_FORM_ID) {
+    if (field.checklist_form_field.checklist_form_id !== ANUNTECH_FORM_ID) {
       continue;
     }
 
