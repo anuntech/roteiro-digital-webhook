@@ -231,7 +231,7 @@ function processWhirlpool(data) {
       parts_warranty,
       approved,
       created_at,
-      updated_at,
+      updated_at: updatedAt,
     })
     .into(WHIRLPOOL_TABLE_NAME)
     .onConflict()
@@ -316,7 +316,7 @@ function processAnuntech(data) {
       notes,
       payment_receipt,
       created_at,
-      updated_at,
+      updated_at: updatedAt,
     })
     .into(ANUNTECH_TABLE_NAME)
     .onConflict()
