@@ -64,6 +64,7 @@ function processWhirlpool(data) {
   let service_warranty = null;
   let parts_warranty = null;
   let approved = null;
+  console.log(fields);
 
   for (const field in fields) {
     if (field.checklist_form_field.name == "appliance.applianceId") {
