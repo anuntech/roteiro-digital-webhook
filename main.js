@@ -335,7 +335,7 @@ app.post("/data", async (req, res) => {
   const body = req.body;
   const data = body.payload;
 
-  await foo(data);
+  await Promise.all([processWhirlpool(data), processAnuntech(data)]);
 
   res.status(200).json({
     message: "Data Saved successfully!",
