@@ -21,7 +21,7 @@ const knex = require("knex")({
   connection: process.env.DATABASE_URL,
 });
 
-function processWhirlpool(data) {
+async function processWhirlpool(data) {
   const { id, entity_id, entity, updated_at: updatedAt, fields } = data;
 
   let created_at = entity?.scheduled_for;
@@ -186,7 +186,7 @@ function processWhirlpool(data) {
     }
   }
 
-  knex
+  await knex
     .insert({
       id,
       entity_id,
@@ -238,7 +238,7 @@ function processWhirlpool(data) {
     .merge();
 }
 
-function processAnuntech(data) {
+async function processAnuntech(data) {
   const { id, entity_id, entity, updated_at: updatedAt, fields } = data;
 
   let order_id = entity?.code;
@@ -296,7 +296,7 @@ function processAnuntech(data) {
     }
   }
 
-  return knex
+  await knex
     .insert({
       id,
       order_id,
@@ -322,12 +322,11 @@ function processAnuntech(data) {
     .onConflict()
     .merge();
 }
-app.post("/data", (req, res) => {
+app.post("/data", async (req, res) => {
   const body = req.body;
   const data = body.payload;
 
-  processWhirlpool(data);
-  processAnuntech(data);
+  Promise.all([processWhirlpool(data), processAnuntech(data)]);
 
   res.status(200).json({
     message: "Data Saved successfully!",
