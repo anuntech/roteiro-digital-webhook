@@ -328,32 +328,25 @@ async function foo(data) {
   let doneWithAnuntech = false;
 
   const promises = [];
-  for (const d of data) {
-    if (!doneWithWhirlpool && d.checklist_form_id === WHIRLPOOL_FORM_ID) {
-      console.log("whirlpool");
-      const r = processWhirlpool(d);
-      if (r !== undefined) {
-        promises.push(r);
-      } else {
-        console.log("is done with whirlpool");
-        doneWithWhirlpool = true;
-      }
+  if (!doneWithWhirlpool && data.checklist_form_id === WHIRLPOOL_FORM_ID) {
+    console.log("whirlpool");
+    const r = processWhirlpool(data);
+    if (r !== undefined) {
+      promises.push(r);
+    } else {
+      console.log("is done with whirlpool");
+      doneWithWhirlpool = true;
     }
+  }
 
-    if (!doneWithAnuntech && d.checklist_form_id === ANUNTECH_FORM_ID) {
-      console.log("anuntech");
-      const r = processAnuntech(d);
-      if (r !== undefined) {
-        promises.push(r);
-      } else {
-        console.log("is done with anuntech");
-        doneWithAnuntech = true;
-      }
-    }
-
-    if (doneWithAnuntech && doneWithWhirlpool) {
-      console.log("break loop");
-      break;
+  if (!doneWithAnuntech && data.checklist_form_id === ANUNTECH_FORM_ID) {
+    console.log("anuntech");
+    const r = processAnuntech(data);
+    if (r !== undefined) {
+      promises.push(r);
+    } else {
+      console.log("is done with anuntech");
+      doneWithAnuntech = true;
     }
   }
 
