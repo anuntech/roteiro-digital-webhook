@@ -322,11 +322,60 @@ async function processAnuntech(data) {
     .onConflict()
     .merge();
 }
+
+async function foo(data) {
+  let doneWithWhirlpool = false;
+  let doneWithAnuntech = false;
+
+  const promises = [];
+  for (const d of data) {
+    if (!doneWithWhirlpool && d.checklist_form_id === WHIRLPOOL_FORM_ID) {
+      console.log("whirlpool");
+      const r = processWhirlpool(d);
+      if (r !== undefined) {
+        promises.push(r);
+      } else {
+        console.log("is done with whirlpool");
+        doneWithWhirlpool = true;
+      }
+    }
+
+    if (!doneWithAnuntech && d.checklist_form_id === ANUNTECH_FORM_ID) {
+      console.log("anuntech");
+      const r = processAnuntech(d);
+      if (r !== undefined) {
+        promises.push(r);
+      } else {
+        console.log("is done with anuntech");
+        doneWithAnuntech = true;
+      }
+    }
+
+    if (doneWithAnuntech && doneWithWhirlpool) {
+      console.log("break loop");
+      break;
+    }
+  }
+
+  if (promises.length > 0) {
+    console.log("insert");
+    await Promise.all(promises);
+  }
+
+  if (doneWithWhirlpool && doneWithAnuntech) {
+    console.log("is done with both");
+    return;
+  }
+
+  console.log("call another foo");
+  return foo(data);
+}
+
 app.post("/data", async (req, res) => {
   const body = req.body;
   const data = body.payload;
 
-  Promise.all([processWhirlpool(data), processAnuntech(data)]);
+  await foo(data);
 
   res.status(200).json({
     message: "Data Saved successfully!",
