@@ -66,6 +66,10 @@ async function processWhirlpool(data) {
   let approved = null;
 
   for (const field of fields) {
+    if (field.checklist_form_field.checklist_form_id === WHIRLPOOL_FORM_ID) {
+      continue;
+    }
+
     console.log(fields);
     if (field.checklist_form_field?.name == "appliance.applianceId") {
       appliance_id = field.value;
@@ -258,6 +262,10 @@ async function processAnuntech(data) {
   let created_at = entity?.scheduled_for;
 
   for (const field of fields) {
+    if (field.checklist_form_field.checklist_form_id === ANUNTECH_FORM_ID) {
+      continue;
+    }
+
     if (field.checklist_form_field_id == 5834) {
       order_classification = field.value;
     }
@@ -321,47 +329,6 @@ async function processAnuntech(data) {
     .into(ANUNTECH_TABLE_NAME)
     .onConflict()
     .merge();
-}
-
-async function foo(data) {
-  let doneWithWhirlpool = false;
-  let doneWithAnuntech = false;
-
-  const promises = [];
-  if (!doneWithWhirlpool && data.checklist_form_id === WHIRLPOOL_FORM_ID) {
-    console.log("whirlpool");
-    const r = processWhirlpool(data);
-    if (r !== undefined) {
-      promises.push(r);
-    } else {
-      console.log("is done with whirlpool");
-      doneWithWhirlpool = true;
-    }
-  }
-
-  if (!doneWithAnuntech && data.checklist_form_id === ANUNTECH_FORM_ID) {
-    console.log("anuntech");
-    const r = processAnuntech(data);
-    if (r !== undefined) {
-      promises.push(r);
-    } else {
-      console.log("is done with anuntech");
-      doneWithAnuntech = true;
-    }
-  }
-
-  if (promises.length > 0) {
-    console.log("insert");
-    await Promise.all(promises);
-  }
-
-  if (doneWithWhirlpool && doneWithAnuntech) {
-    console.log("is done with both");
-    return;
-  }
-
-  console.log("call another foo");
-  return foo(data);
 }
 
 app.post("/data", async (req, res) => {
