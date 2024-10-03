@@ -1,13 +1,13 @@
 const express = require("express");
 const app = express();
 const { config } = require("dotenv");
-const port = 3000;
 
 config();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const port = process.env["PORT"] || 3000;
 const WHIRLPOOL_TABLE_NAME = process.env["WHIRLPOOL_TABLE_NAME"];
 const WHIRLPOOL_FORM_ID = parseInt(process.env["WHIRLPOOL_FORM_ID"], 10);
 const WHIRLPOOL_COMPANY_ID = parseInt(process.env["WHIRLPOOL_COMPANY_ID"], 10);
